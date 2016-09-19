@@ -20,6 +20,7 @@ function calculate() {
     var price = document.getElementById('price').value;
     var tax = document.getElementById('tax').value;
     var discount = document.getElementById('discount').value;
+    var shipping = document.getElementById('shipping').value;
 
 	// Add validation here later!
 
@@ -36,10 +37,20 @@ function calculate() {
 	console.log("total after tax: " + total);
 
 	// Factor in the discount:
-	total = total - discount;
+	// 1.3 sadan kappaleen tilauksista saa tupla-alen
+	if (quantity >= 100) {
+			total = total - discount*2
+	}
+	else {
+		total = total - discount;
+	}
+
 	console.log("total after discount: " + total);
 
 	// Format the total to two decimal places:
+	total = total + +shipping;
+	console.log("total after shipping: " + total);
+
 	total = total.toFixed(2);
 
 	// Display the total:
